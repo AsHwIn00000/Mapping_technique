@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cache Memory Analyzer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="dark">
+
+  <header>
+    <div class="header-inner">
+      <h1>Cache Memory Analyzer</h1>
+      <p class="subtitle">COA Simulator — Visual Cache Mapping Tool</p>
+    </div>
+    <button id="themeToggle" onclick="toggleTheme()" title="Toggle Theme">🌙</button>
+  </header>
+
+  <main>
+
+    <!-- Hero -->
+    <div class="hero">
+      <h2>Visualize Cache Behavior</h2>
+      <p>Configure your cache, run a simulation, and compare how each mapping technique performs.</p>
+    </div>
+
+    <!-- Config Card -->
+    <section class="card">
+      <div class="card-title"><span class="dot"></span> Choose Mapping Technique</div>
+
+      <!-- Visual technique selector -->
+      <div class="technique-grid">
+        <div class="tech-card selected" data-value="all" onclick="selectTechnique(this)">
+          <div class="tech-name">Compare All</div>
+        </div>
+        <div class="tech-card" data-value="direct" onclick="selectTechnique(this)">
+          <div class="tech-name">Direct Mapping</div>
+        </div>
+        <div class="tech-card" data-value="fully" onclick="selectTechnique(this)">
+          <div class="tech-name">Fully Associative</div>
+        </div>
+        <div class="tech-card" data-value="set" onclick="selectTechnique(this)">
+          
+          <div class="tech-name">Set Associative</div>
+        </div>
+      </div>
+
+      <!-- Hidden select kept for script.js compatibility -->
+      <select id="mappingType" onchange="toggleSetInput()">
+        <option value="all">Compare All</option>
+        <option value="direct">Direct Mapping</option>
+        <option value="fully">Fully Associative</option>
+        <option value="set">Set Associative</option>
+      </select>
+
+      <div class="divider"></div>
+      <div class="card-title"><span class="dot"></span> Cache Parameters</div>
+
+      <div class="input-grid">
+        <div class="input-group">
+          <label for="cacheSize">Cache Size (blocks)</label>
+          <input type="number" id="cacheSize" value="4" min="1" />
+          <span class="hint">Total lines the cache can hold</span>
+        </div>
+
+        <div class="input-group">
+          <label for="blockSize">Block Size (bytes)</label>
+          <input type="number" id="blockSize" value="1" min="1" />
+          <span class="hint">Bytes per cache block</span>
+        </div>
+
+        <div class="input-group" id="setInputGroup">
+          <label for="numSets">Number of Sets</label>
+          <input type="number" id="numSets" value="2" min="1" />
+          <span class="hint">Sets for set-associative mapping</span>
+        </div>
+
+        <div class="input-group full-width">
+          <label for="accessSeq">Memory Access Sequence</label>
+          <input type="text" id="accessSeq" value="4,7,6,1,7,6,1,2,7,2,3"
+                 placeholder="e.g. 4,7,6,1,7,6,1,2,7,2,3" />
+          <span class="hint">Comma-separated memory addresses</span>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-primary" onclick="goSimulation()">▶&nbsp; Run Simulation</button>
+        <button class="btn-ghost"   onclick="resetForm()">↺ Reset</button>
+      </div>
+      <p id="errorMsg" class="error-msg"></p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Cache Memory Mapping Analyzer &mdash; COA Educational Simulator</p>
+  </footer>
+
+  <script src="cache-engine.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

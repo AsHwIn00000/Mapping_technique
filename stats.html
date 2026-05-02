@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Statistics — Cache Analyzer</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="dark">
+
+  <header>
+    <div class="header-inner">
+      <h1>📊 Performance Stats</h1>
+      <p class="subtitle" id="statsSubtitle">Loading...</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn-ghost"   onclick="window.location.href='simulation.html'">← Simulation</button>
+      <button class="btn-ghost"   onclick="window.location.href='index.html'">🏠 Home</button>
+      <button id="themeToggle" onclick="toggleTheme()">🌙</button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Summary Cards -->
+    <section class="card">
+      <div class="card-title"><span class="dot"></span> Summary</div>
+      <div id="statsCards" class="stats-grid"></div>
+    </section>
+
+    <!-- Comparison (Compare All only) -->
+    <section class="card" id="compSection" style="display:none">
+      <div class="card-title"><span class="dot"></span> Technique Comparison</div>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Technique</th>
+              <th>Hits</th>
+              <th>Misses</th>
+              <th>Hit Ratio</th>
+              <th>Miss Rate</th>
+              <th>AMAT</th>
+            </tr>
+          </thead>
+          <tbody id="compTableBody"></tbody>
+        </table>
+      </div>
+      <div class="chart-container">
+        <canvas id="hitRatioChart"></canvas>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Cache Memory Mapping Analyzer &mdash; COA Educational Simulator</p>
+  </footer>
+
+  <script src="cache-engine.js"></script>
+  <script src="stats.js"></script>
+</body>
+</html>

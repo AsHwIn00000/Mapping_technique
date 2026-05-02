@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Simulation — Cache Analyzer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="dark">
+
+  <header>
+    <div class="header-inner">
+      <h1>🔍 Simulation</h1>
+      <p class="subtitle" id="simSubtitle">Loading...</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn-ghost"      onclick="window.location.href='index.html'">← Back</button>
+      <button class="btn-primary"    onclick="window.location.href='stats.html'">📊 Stats →</button>
+      <button id="themeToggle" onclick="toggleTheme()">🌙</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="card">
+      <div class="card-title"><span class="dot"></span> Step-by-Step Cache Trace</div>
+
+      <!-- Progress bar -->
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="progressBar" style="width:0%"></div>
+      </div>
+
+      <!-- Controls -->
+      <div class="step-controls">
+        <button class="btn-secondary" onclick="prevStep()">◀ Prev</button>
+        <span class="step-counter-pill" id="stepCounter">0 / 0</span>
+        <button class="btn-secondary" onclick="nextStep()">Next ▶</button>
+        <button class="btn-primary"   onclick="runAllSteps()">⚡ Run All</button>
+      </div>
+
+      <!-- Cache Grid -->
+      <div id="cacheGridContainer"></div>
+
+      <!-- Step Table -->
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Block Addr</th>
+              <th>Line / Set</th>
+              <th>Cache State</th>
+              <th>Result</th>
+            </tr>
+          </thead>
+          <tbody id="stepTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Cache Memory Mapping Analyzer &mdash; COA Educational Simulator</p>
+  </footer>
+
+  <script src="cache-engine.js"></script>
+  <script src="simulation.js"></script>
+</body>
+</html>
